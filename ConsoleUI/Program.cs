@@ -11,8 +11,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            BrandManager brandManager= new BrandManager(new EfBrandDal());
-            brandManager.Add(new Brand { BrandId = 10, BrandName = "Tofaş" });
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { Id = 1, UserId = 2, CompanyName = "Yasir Holding" });
         }
     }
 }
