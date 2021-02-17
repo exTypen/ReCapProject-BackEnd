@@ -11,8 +11,15 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(new Customer { Id = 1, UserId = 2, CompanyName = "Yasir Holding" });
+            CarManager carManager = new CarManager(new EfCarDal());
+            var result = carManager.GetCarDetails();
+            if (result.Success)
+            {
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.CarId + " / " + product.Description);
+                }
+            }
         }
     }
 }
