@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Utilities.Result.Abstract;
-using Core.Utilities.Result.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;

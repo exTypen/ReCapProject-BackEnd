@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.11" />
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
@@ -13,9 +14,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
-    <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 

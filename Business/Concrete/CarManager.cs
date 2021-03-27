@@ -2,8 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Result.Abstract;
-using Core.Utilities.Result.Concrete;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -31,7 +30,7 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int CarId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(p => p.CarId == CarId));
+            return new SuccessDataResult<Car>(_carDal.Get(p => p.Id == CarId));
         }
 
         public IDataResult<List<Car>> GetAll()
