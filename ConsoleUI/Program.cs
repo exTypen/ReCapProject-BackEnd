@@ -16,7 +16,7 @@ namespace ConsoleUI
             {
                 foreach (var car in result.Data)
                 {
-                    Console.WriteLine(car.Id + " / " + car.Description);
+                    Console.WriteLine(car.CarId + " / " + car.Description);
                 }
             }
         }

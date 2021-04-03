@@ -9,11 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\MyFinalProject\Core\Core.csproj" />
+    <ProjectReference Include="..\..\KampFinalProject-master\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ namespace Business.Constants
     public class Messages
     {
         public static string CarAdded = "Araç Eklendi";
-        public static string CarRented = "Araç Kiralandı";
+        public static string CarRented = "O Tarihte Araç Kiralı";
         public static string CarIdInvalid = "Araç id geçersiz";
         public static string MaintenanceTime = "Şu an bakım var";
         public static string CarsListed = "Araçlar listelendi";
@@ -20,6 +20,8 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Giriş başarılı";
         public static string UserAlreadyExists = "Kullanıcı zaten mevcut";
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
-        public static string AccessTokenCreated = "Access Token başarıyla oluşturuldu";
+        public static string AccessTokenCreated = "Token oluşturuldu";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string CarDeleted = "Araba silindi";
     }
 }
