@@ -29,5 +29,16 @@ namespace WebApi.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getuserdetailsbyemail")]
+        public IActionResult GetUserDetailsByEmail(string email)
+        {
+            var result = _userService.GetAllUserDetailsByEmail(email);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

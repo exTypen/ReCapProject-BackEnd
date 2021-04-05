@@ -25,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
                        LastName = user.LastName,
                        Email = user.Email,
                        OperationClaimsId = 
-                       (from i in context.UserOperationClaims where i.UserId == user.Id select i.OperationClaimsId).ToList(),
+                       (from i in context.UserOperationClaims where i.UserId == user.Id select i.OperationClaimId).ToList(),
 
                     };
                 return result.ToList();
@@ -38,7 +38,7 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from operationClaim in context.OperationClaims
                     join userOperationClaim in context.UserOperationClaims
-                        on operationClaim.Id equals userOperationClaim.OperationClaimsId
+                        on operationClaim.Id equals userOperationClaim.OperationClaimId
                     where userOperationClaim.UserId == user.Id
                     select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();

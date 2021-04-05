@@ -34,9 +34,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetAllUserDetails());
         }
 
-        public List<OperationClaim> GetClaims(User user)
+        public IDataResult<List<UserDetailDto>> GetAllUserDetailsByEmail(string email)
         {
-            return _userDal.GetClaims(user);
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetAllUserDetails(u=>u.Email == email));
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
     }
 }
