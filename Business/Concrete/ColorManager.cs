@@ -17,6 +17,11 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        public IDataResult<List<Color>> GetById(int id)
+        {
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(c => c.ColorId == id));
+        }
+
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
