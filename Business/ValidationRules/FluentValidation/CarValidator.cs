@@ -10,9 +10,18 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CarValidator()
         {
-            RuleFor(c => c.Description).MinimumLength(2).WithMessage("Açıklama en az 2 karakter olmalı");
-            RuleFor(c => c.DailyPrice).NotEmpty().WithMessage("Ücret boş olamaz");
-            RuleFor(c => c.DailyPrice).GreaterThan(0).WithMessage("Ücret 0'dan büyük olmalı");
+            RuleFor(car => car.BrandId).NotEmpty();
+            RuleFor(car => car.ColorId).NotEmpty();
+            RuleFor(car => car.ModelYear).NotEmpty();
+
+            RuleFor(car => car.DailyPrice).NotEmpty();
+            RuleFor(car => car.DailyPrice).GreaterThan(0);
+
+            RuleFor(car => car.Description).NotEmpty();
+            RuleFor(car => car.Description).MinimumLength(2);
+
+            RuleFor(car => car.MinFindexPoint).GreaterThanOrEqualTo(0);
+            RuleFor(car => car.MinFindexPoint).LessThanOrEqualTo(1900);
         }
     }
 }

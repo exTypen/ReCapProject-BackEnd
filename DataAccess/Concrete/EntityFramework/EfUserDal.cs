@@ -28,7 +28,8 @@ namespace DataAccess.Concrete.EntityFramework
                        (from i in context.UserOperationClaims where i.UserId == user.Id select i.OperationClaimId).ToList(),
                        PasswordHash = user.PasswordHash,
                        PasswordSalt = user.PasswordSalt,
-                       Rentals = (from r in context.Rentals where r.UserId == user.Id select r).ToList()
+                       Rentals = (from r in context.Rentals where r.UserId == user.Id select r).ToList(),
+                       FindexPoint = user.FindexPoint
                     };
                 return result.ToList();
             }

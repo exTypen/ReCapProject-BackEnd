@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -24,21 +25,26 @@ namespace Business.Concrete
         }
 
 
-
         [ValidationAspect(typeof(CarValidator))]
         [SecuredOperation("car.add,admin")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
 
+        [SecuredOperation("car.update,admin")]
+        [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
 
+        [SecuredOperation("car.delete,admin")]
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -50,12 +56,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(p => p.CarId == CarId));
         }
 
-        
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
+
 
         public IDataResult<List<Car>> GetAllByBrandId(int id)
         {
@@ -68,10 +74,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice > min && c.DailyPrice < max));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails());
         }
+
 
         public IDataResult<List<CarDetailDto>> GetCarDetailsFiltered(int brandId, int colorId)
         {

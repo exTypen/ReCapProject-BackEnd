@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -21,6 +24,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
@@ -31,7 +35,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CarId == carId));
         }
 
-
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.Get")]
         public IResult Add(Rental rental)
         {
             var result = BusinessRules.Run(CarRentedCheck(rental));
@@ -50,6 +55,7 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        [CacheRemoveAspect("IRentalService.Get")]
         public IResult Delete(Rental rental)
         {
             throw new NotImplementedException();
@@ -61,6 +67,13 @@ namespace Business.Concrete
 
             if (rentalledCars)
             {
+                var rentalledCars2 = _rentalDal.GetAll(r => r.CarId == rental.CarId && (rental.ReturnDate < r.RentDate))
+                    .Any();
+                if (rentalledCars2)
+                {
+                    return new SuccessResult();
+                }
+
                 return new ErrorResult(Messages.CarRented);
             }
             return new SuccessResult();

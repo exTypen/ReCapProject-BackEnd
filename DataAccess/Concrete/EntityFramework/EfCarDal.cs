@@ -41,6 +41,8 @@ namespace DataAccess.Concrete.EntityFramework
 
                         BrandId = brand.BrandId,
 
+                        MinFindexPoint = car.MinFindexPoint,
+
                         Images =
                             (from i in context.CarImages where i.CarId == car.CarId select i.ImagePath).ToList(),
                         
