@@ -25,5 +25,6 @@ namespace Business.Constants
         public static string CarDeleted = "Araba silindi";
         public static string CarUpdated = "Araba Güncellendi";
         public static string CreditIsNotExist = "Bilgileri yanlış girdiniz";
+        public static string UserUpdated = "Kullanıcı güncellendi";
     }
 }

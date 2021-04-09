@@ -6,6 +6,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.Constants;
 using Entities.DTOs;
 
 namespace Business.Concrete
@@ -37,6 +38,17 @@ namespace Business.Concrete
         public IDataResult<List<UserDetailDto>> GetAllUserDetailsByEmail(string email)
         {
             return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetAllUserDetails(u=>u.Email == email));
+        }
+
+        public IDataResult<List<UserDetailDto>> GetAllUserDetailsById(int id)
+        {
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetAllUserDetails(u => u.Id == id));
+        }
+
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult(Messages.UserUpdated);
         }
 
         public IDataResult<List<OperationClaim>> GetClaims(User user)

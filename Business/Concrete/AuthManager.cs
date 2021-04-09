@@ -29,6 +29,18 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
+        public IDataResult<PasswordDto> CreatePasswordHash(string password)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var passwordDto = new PasswordDto
+            {
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+            return new SuccessDataResult<PasswordDto>(passwordDto);
+        }
+
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -72,5 +84,7 @@ namespace Business.Concrete
 
             return new SuccessResult();
         }
+
+
     }
 }

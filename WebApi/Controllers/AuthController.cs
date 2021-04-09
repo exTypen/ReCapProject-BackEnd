@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
+using Core.Utilities.Security.Hashing;
 using Entities.DTOs;
 
 namespace WebApi.Controllers
@@ -57,6 +58,28 @@ namespace WebApi.Controllers
             return BadRequest(result.Message);
         }
 
-        
+        [HttpGet("createpasswordhash")]
+        public IActionResult CreatePasswordHash(string password)
+        {
+            var result = _authService.CreatePasswordHash(password);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("verifypassword")]
+        public IActionResult Add(PasswordForVerifyDto passwordForVerifyDto)
+        {
+            var result = HashingHelper.VerifyPasswordHash(passwordForVerifyDto.Password, passwordForVerifyDto.PasswordHash, passwordForVerifyDto.PasswordSalt);
+            if (result)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
     }
 }
