@@ -6,7 +6,6 @@ Genel olarak proje katmanlı mimariye uygun şekilde tasarlanıp OOP olarak enti
 - [DataAccess](https://github.com/cenkerkumlucali/ReCapProject/tree/master/DataAccess):Veritabanı CRUD işlemleri gerçekleştirmek için oluşturulan Data Access Katmanı'nda Abstract ve Concrete olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur. 
 - [Entites](https://github.com/cenkerkumlucali/ReCapProject/tree/master/Entities):Veritabanı nesneleri için oluşturulmuş Entities Katmanı'nda Abstract ve Concrete olmak üzere iki adet klasör bulunmaktadır.Abstract klasörü soyut nesneleri, Concrete klasörü somut nesneleri tutmak için oluşturulmuştur. 
 - [WebAPI](https://github.com/cenkerkumlucali/ReCapProject/tree/master/WebAPI) 
-- [ConsoleUI](https://github.com/cenkerkumlucali/ReCapProject/tree/master/ConsoleUI) 
 
 #### Prerequest 
 
