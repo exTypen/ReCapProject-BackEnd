@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Extensions;
 using Core.Utilities.IoC;
+using Microsoft.OpenApi.Models;
 
 namespace WebApi
 {
@@ -38,6 +39,24 @@ namespace WebApi
         {
             
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("ProductApi", new OpenApiInfo // Bu kýsýmda dökümanda kullanýlacak bilgileri tanýmlýyoruz.Versiyon,Baþlýk,Açýklama,Servis gibi bilgileri yazabiliriz.
+                { //Burada dikkat edilmesi gereken konu yukarýda parametre olarak geçirdiðimizi "ProductApi". Burada verdiðiniz deðer ile aþaðýda configure içerisinde swaggerýn json dosyasýnýn pathini verirken kullandýðýmýz deðer ayný olmalý
+                    Version = "v1",
+                    Title = "Product API",
+                    Description = "A simple example ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Metin Yorgun",
+                        Email = "metinyorgun@outlook.com",
+                        Url = new Uri("https://www.google.com"),
+                    },
+                });
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:3000"));
@@ -75,6 +94,8 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
+
             app.ConfigureCustomExceptionMiddleware();
 
             app.UseStaticFiles();
@@ -92,6 +113,13 @@ namespace WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/ProductApi/swagger.json", "Product API"); 
             });
         }
     }

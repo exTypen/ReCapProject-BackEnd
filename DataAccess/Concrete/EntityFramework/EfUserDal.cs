@@ -18,8 +18,10 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from user in filter == null ? context.Users : context.Users.Where(filter)
 
+
                     select new UserDetailDto
                     {
+                        
                        UserId = user.Id,
                        FirstName = user.FirstName,
                        LastName = user.LastName,
@@ -29,7 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                        PasswordHash = user.PasswordHash,
                        PasswordSalt = user.PasswordSalt,
                        Rentals = (from r in context.Rentals where r.UserId == user.Id select r).ToList(),
-                       FindexPoint = user.FindexPoint
+                       FindexPoint = user.FindexPoint,
+                       CardIds = (from c in context.UserCreditCards where c.UserId == user.Id select c.CardId).ToList()
                     };
                 return result.ToList();
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Core.Entities;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 
 namespace Entities.DTOs
@@ -15,6 +16,7 @@ namespace Entities.DTOs
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
         public List<int> OperationClaimsId { get; set; }
+        public List<int> CardIds { get; set; }
         public List<Rental> Rentals { get; set; }
         public int FindexPoint { get; set; }      
     }

@@ -31,5 +31,29 @@ namespace WebApi.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpGet("getcardbyid")]
+        public IActionResult GetCardById(int id)
+        {
+            var result = _creditCardService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getcardbynumber")]
+        public IActionResult GetCardByNumber(Int64 number)
+        {
+            var result = _creditCardService.GetByNumber(number);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
     }
 }

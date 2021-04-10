@@ -10,5 +10,8 @@ namespace Business.Abstract
     {
         IResult CheckCreditCard(CreditCard creditCard);
         IDataResult<List<CreditCard>> GetAll();
+        IDataResult<CreditCard> GetById(int id);
+        IDataResult<CreditCard> GetByNumber(Int64 number);
+
     }
 }

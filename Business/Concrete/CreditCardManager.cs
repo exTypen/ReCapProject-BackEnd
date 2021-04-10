@@ -39,5 +39,15 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll());
         }
+
+        public IDataResult<CreditCard> GetById(int id)
+        {
+            return new SuccessDataResult<CreditCard>(_creditCardDal.Get(c => c.CardId == id));
+        }
+
+        public IDataResult<CreditCard> GetByNumber(Int64 number)
+        {
+            return new SuccessDataResult<CreditCard>(_creditCardDal.Get(c => c.CardNumber == number));
+        }
     }
 }
